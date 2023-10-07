@@ -51,32 +51,19 @@ def diabetesform():
     output=round(prediction[0],2)
     return render_template('diabetesform.html',out=output)
 
-# @app.route('/predict', methods=['GET','POST'])
-# def predict():
-    
-#     prediction=model.predict([[float(request.form.get('area'))]])
-#     output=round(prediction[0],2)
-#     return render_template('index.html', prediction_text=f'Total price:{output}')
-
-# @app.route('/predict', methods=['GET','POST'])
-# def predict():
-    
-#     prediction=model.predict([[float(request.form.get('area'))]])
-#     output=round(prediction[0],2)
-#     return render_template('index.html', prediction_text=f'Total price:{output}')
-
-# @app.route('/predict', methods=['GET','POST'])
-# def predict():
-    
-#     prediction=model.predict([[float(request.form.get('area'))]])
-#     output=round(prediction[0],2)
-#     return render_template('index.html', prediction_text=f'Total price:{output}')
-
-# @app.route('/predict', methods=['GET','POST'])
-# def predict():
-    
-#     prediction=model.predict([[float(request.form.get('area'))]])
-#     output=round(prediction[0],2)
-#     return render_template('index.html', prediction_text=f'Total price:{output}')
+@app.route('/parkinson', methods=['GET','POST'])
+def predict():
+    model = pickle.load(open('modelP.pkl','rb'))
+    fo = request.form.get('age')
+    # fhi = int(request.form.get('glucose'))
+    # flo = request.form.get('bloodPressure')
+    # jit = request.form.get('skinThickness')
+    # rap = request.form.get('insulin')
+    # ppq = request.form.get('bmi')
+    # ddp = request.form.get('diabetesPedigree')
+    # age = request.form.get('age')
+    prediction=model.predict([[8]])
+    output=round(prediction[0],2)
+    return render_template('parkinsonform.html', out=output)
 if __name__ == '__main__':
     app.run(debug=True)
