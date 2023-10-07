@@ -1,6 +1,6 @@
 from distutils.log import debug
 import pickle
-from flask import Flask , render_template,request
+from flask import Flask , render_template, request
 
 app= Flask(__name__)
 
@@ -13,44 +13,51 @@ def index():
 def signin():
     return render_template('signin.html')
 
+@app.route('/heart')
+def heart():
+    return render_template('heartform.html')
+
+@app.route('/diabetes')
+def diabetes():
+    return render_template('diabetesform.html')
+
 @app.route('/heartform', methods=['GET','POST'])
 def heartform():
     model=pickle.load(open('model.pkl','rb'))
-    # age = (request.form.get('age'))
-    # sex = (request.form.get('gender'))
-    # cp = (request.form.get('chestPain'))
-    # trestbps = (request.form.get('trestbps'))
-    # chol = (request.form.get('chol'))
-    # fbs = (request.form.get('fastingSugar'))
-    # restecg = (request.form.get('restecg'))
-    # thalach = (request.form.get('thalach'))
-    # exeng = (request.form.get('exerciseAngina'))
-    # oldpeak = (request.form.get('STDepression'))
-    # slope = (request.form.get('slope'))
-    # ca = (request.form.get('ca'))
-    # thal = (request.form.get('thal'))
-    # print(age,sex,cp,trestbps,chol,fbs,restecg,thalach,exeng,oldpeak,slope,ca,thal)
-    # pre = model.predict([[(age),(sex),(cp),(trestbps),(chol),(fbs),(restecg),(thalach),(exeng),(oldpeak),(slope),(ca),(thal)]])
-    pre = model.predict([[1,20,15,13,46,78,97,55,84,66,3,12,153]])
+    age = int(request.form.get('age'))
+    sex = int(request.form.get('gender'))
+    cp = int(request.form.get('chestPain'))
+    trestbps = int(request.form.get('trestbps'))
+    chol = int(request.form.get('chol'))
+    fbs = int(request.form.get('fastingSugar'))
+    restecg = int(request.form.get('restecg'))
+    thalach = int(request.form.get('thalach'))
+    exeng = int(request.form.get('exerciseAngina'))
+    oldpeak = int(request.form.get('STDepression'))
+    slope = int(request.form.get('slope'))
+    ca = int(request.form.get('ca'))
+    thal = int(request.form.get('thal'))
+    pre = model.predict([[(age),(sex),(cp),(trestbps),(chol),(fbs),(restecg),(thalach),(exeng),(oldpeak),(slope),(ca),(thal)]])
+    # pre = model.predict([[1,20,15,13,46,78,97,55,84,66,3,12,153]])
     output = round(pre[0],2)
-    return render_template('heartform.html',out=output)
+    return render_template('result.html',out=output)
 
 @app.route('/diabetesform', methods=['GET','POST'])
 def diabetesform():
     model=pickle.load(open('modelD.pkl','rb'))
-    # pregnancies = request.form.get('pregnancies')
-    # glucose = request.form.get('glucose')
-    # bloodPressure = request.form.get('bloodPressure')
-    # skinThickness = request.form.get('skinThickness')
-    # insulin = request.form.get('insulin')
-    # bmi = request.form.get('bmi')
-    # diabetesPedigree = request.form.get('diabetesPedigree')
-    # age = request.form.get('age')
+    pregnancies = int(request.form.get('pregnancies'))
+    glucose = int(request.form.get('glucose'))
+    bloodPressure = int(request.form.get('bloodPressure'))
+    skinThickness = int(request.form.get('skinThickness'))
+    insulin = int(request.form.get('insulin'))
+    bmi = int(request.form.get('bmi'))
+    diabetesPedigree = int(request.form.get('diabetesPedigree'))
+    age = int(request.form.get('age'))
     # print((pregnancies),(glucose),(bloodPressure),(skinThickness),(insulin),(bmi),(diabetesPedigree),(age))
-    # pre=model.predict([[(pregnancies),(glucose),(bloodPressure),(skinThickness),(insulin),(bmi),(diabetesPedigree),(age)]])
-    pre = model.predict([[1,23,24,15,26,79,48,75]])
+    pre=model.predict([[(pregnancies),(glucose),(bloodPressure),(skinThickness),(insulin),(bmi),(diabetesPedigree),(age)]])
+    # pre = model.predict([[1,23,24,15,26,79,48,75]])
     output=round(pre[0],2)
-    return render_template('diabetesform.html',out=output)
+    return render_template('result.html',out1=output)
 
 @app.route('/parkinson', methods=['GET','POST'])
 def predict():
