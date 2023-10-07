@@ -57,32 +57,31 @@
         <h2>Diabetes Prediction Form</h2>
         <form action="{{url_for('diabetesform')}}" method="POST">
             <label for="pregnancies">Pregnancies</label>
-            <input type="number" id="pregnancies" name="pregnancies" value="1">
+            <input type="text" id="pregnancies" name="pregnancies" value="1">
 
             <label for="glucose">Glucose Level</label>
-            <input type="number" id="glucose" name="glucose" value="12" required>
+            <input type="text" id="glucose" name="glucose" value="12" required>
 
             <label for="bloodPressure">Blood Pressure</label>
-            <input type="number" id="bloodPressure" name="bloodPressure" value="11" required>
+            <input type="text" id="bloodPressure" name="bloodPressure" value="11" required>
 
             <label for="skinThickness">Skin Thickness</label>
-            <input type="number" id="skinThickness" name="skinThickness" value="100" required>
+            <input type="text" id="skinThickness" name="skinThickness" value="100" required>
 
             <label for="insulin">Insulin Level</label>
-            <input type="number" id="insulin" name="insulin" value="28" required>
+            <input type="text" id="insulin" name="insulin" value="28" required>
 
             <label for="bmi">BMI (Body Mass Index)</label>
-            <input type="number" id="bmi" name="bmi" value="11">
+            <input type="text" id="bmi" name="bmi" value="11">
 
             <label for="diabetesPedigree">Diabetes Pedigree Function</label>
-            <input type="number" id="diabetesPedigree" name="diabetesPedigree" value="12" required>
+            <input type="text" id="diabetesPedigree" name="diabetesPedigree" value="12" required>
 
             <label for="age">Age</label>
-            <input type="number" id="age" name="age" required value="11">
+            <input type="text" id="age" name="age" required value="11">
 
             <button type="submit">Submit</button>
         </form>
     </div>
-    {{out}}
 </body>
 </html>
