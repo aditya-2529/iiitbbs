@@ -1,6 +1,7 @@
 # AyurVisionary
 
 ![AyurVisionary Logo](https://health-gqed.onrender.com/static/Images/navlogo.png)
+![Website is deployed here](https://health-gqed.onrender.com)
 
 AyurVisionary is an innovative AI/ML project that aims to empower individuals with valuable health insights. By combining cutting-edge machine learning techniques with medical expertise, AyurVisionary offers a platform where users can submit photos or X-rays of specific body parts or medical conditions. The application then analyzes these images and provides information on possible diseases or conditions the person may be suffering from, along with general suggestions for remedies and advice.
 
