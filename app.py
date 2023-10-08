@@ -62,19 +62,38 @@ def diabetesform():
     output=round(pre[0],0)
     return render_template('result.html',out=output)
 
-@app.route('/parkinson', methods=['GET','POST'])
-def predict():
+@app.route('/parkinson')
+def parkinson():
+    return render_template('parkinsonform.html')
+
+@app.route('/parkinsonsform', methods=['GET','POST'])
+def parkinsonsform():
     model = pickle.load(open('modelP.pkl','rb'))
-    fo = request.form.get('age')
-    # fhi = int(request.form.get('glucose'))
-    # flo = request.form.get('bloodPressure')
-    # jit = request.form.get('skinThickness')
-    # rap = request.form.get('insulin')
-    # ppq = request.form.get('bmi')
-    # ddp = request.form.get('diabetesPedigree')
-    # age = request.form.get('age')
-    prediction=model.predict([[8]])
+    prediction=model.predict([[
+float(request.form.get('MDVPFo')),
+float(request.form.get('MDVPFhi')),
+float(request.form.get('MDVPFlo')),
+float(request.form.get('MDVPJitter')),
+float(request.form.get('MDVPJitterAbs')),
+float(request.form.get('MDVPRAP')),
+float(request.form.get('MDVPPPQ')),
+float(request.form.get('JitterDDP')),
+float(request.form.get('MDVPShimmer')),
+float(request.form.get('MDVPShimmerdB')),
+float(request.form.get('ShimmerAPQ3')),
+float(request.form.get('ShimmerAPQ5')),
+float(request.form.get('MDVPAPQ')),
+float(request.form.get('ShimmerDDA')),
+float(request.form.get('NHR')),
+float(request.form.get('HNR')),
+float(request.form.get('RPDE')),
+float(request.form.get('DFA')),
+float(request.form.get('spread1')),
+float(request.form.get('spread2')),
+float(request.form.get('D2')),
+float(request.form.get('PPE'))]])
     output=round(prediction[0],2)
-    return render_template('parkinsonform.html', out=output)
+    return render_template('result.html', out=output)
+
 if __name__ == '__main__':
     app.run(debug=True)
